@@ -7,12 +7,14 @@
 
 	use gis\core\di\DiContainer;
 	use gis\core\exception\ExitException;
+    use Phore\Di\DiCaller;
+    use Phore\Di\PhoreBaseDiCaller;
 
     class CliController {
 		const INST_MAIN = "INST_MAIN";
 		
 		private function __construct () {
-			$this->mDiContainer = new DiContainer();
+			$this->mDiContainer = new PhoreBaseDiCaller();
 		}
 		
 		private $myCliGroups = array();
@@ -24,7 +26,7 @@
 		}
 		
 		
-		public function setDiContainer (DiContainer $diContainer) {
+		public function setDiContainer (DiCaller $diContainer) {
 			$this->mDiContainer = $diContainer;
 		}
 		

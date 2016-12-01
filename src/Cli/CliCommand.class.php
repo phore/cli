@@ -2,9 +2,9 @@
 
     namespace Phore\Cli;
 
-	use gis\core\di\DiContainer;
+    use Phore\Di\DiCaller;
 
-	class CliCommand {
+    class CliCommand {
 		
 		
 		private $myCliSelectStr;
@@ -65,7 +65,7 @@
 		}
 		
 		
-		public function dispatch ($args, DiContainer $diContainer) {
+		public function dispatch ($args, DiCaller $diContainer) {
 			if (@$args[0] == "-h") {
 				$this->printHelp();
 				return;
@@ -75,10 +75,10 @@
 
 			$overrideInterface = [CliArgumentContainer::class=>$this->myArgumentContainer];
 			foreach ($this->myArgumentContainer->getArgumentNames() as $curName) {
-				$overrideInterface["§{$curName}"] = $this->myArgumentContainer->getArgumentByName($curName);
+				$overrideInterface["{$curName}"] = $this->myArgumentContainer->getArgumentByName($curName);
 			}
 
-			$diContainer->callArr($this->myTargetFunction, [], $overrideInterface);
+			$diContainer($this->myTargetFunction, $overrideInterface);
 		}
 
 	}

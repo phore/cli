@@ -2,9 +2,9 @@
 
     namespace Phore\Cli;
 
-	use gis\core\di\DiContainer;
+    use Phore\Di\DiCaller;
 
-	class CliGroup {
+    class CliGroup {
 		
 		
 		private $myCommands = array();
@@ -43,7 +43,7 @@
 		}
 		
 		
-		public function dispatch ($args, DiContainer $diContainer) {
+		public function dispatch ($args, DiCaller $diContainer) {
 			if (@$args[0] == "-h" or count ($args) == 0) {
 				echo "Printing Help for {$this->myCliSelectStr}\n";
 				$this->printHelp();
