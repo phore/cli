@@ -18,13 +18,23 @@
 		}
 		
 		private $myCliGroups = array();
-		
+		private $myCliGroupsByName = [];
+
+
 		private $mDiContainer;
 		
 		public function addCliGroup (CliGroup $group) {
 			$this->myCliGroups[] = $group;
 		}
-		
+
+
+		public function group ($name) : CliGroup {
+		    if ( ! isset ($this->myCliGroupsByName[$name]))
+		        $this->myCliGroupsByName[$name] = new CliGroup($name);
+		    return $this->myCliGroupsByName[$name];
+        }
+
+
 		
 		public function setDiContainer (DiCaller $diContainer) {
 			$this->mDiContainer = $diContainer;

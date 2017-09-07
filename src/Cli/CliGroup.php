@@ -16,15 +16,21 @@
 		
 		
 		
-		public function __construct ($cliSelectStr, $description) {
+		public function __construct ($cliSelectStr) {
 			$this->myCliSelectStr = $cliSelectStr;
-			$this->myDescription = $description;
 		}
-		
-		public function addCommand (CliCommand $command) {
-			$this->myCommands[] = $command;
-		}
-		
+
+
+		public function description ($description) : self {
+		    $this->myDescription = $description;
+		    return $this;
+        }
+
+		public function command($name) : CliCommand {
+            $this->myCommands[] = $cmd = new CliCommand($name);
+        }
+
+
 		
 		public function isMySelectStr ($str) {
 			if ("--".$this->myCliSelectStr == $str) 

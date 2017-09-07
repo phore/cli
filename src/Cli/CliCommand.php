@@ -26,28 +26,35 @@
 		 * @param $args array|CliArgumentContainer
 		 * @param $function
 		 */
-		public function __construct ($cliSelectStr, $description, $args, callable $function) {
+		public function __construct ($cliSelectStr) {
 			$this->myCliSelectStr = $cliSelectStr;
 			$this->myDescription = $description;
 
-			if (is_array($args)) {
-				$tmpArgs = new CliArgumentContainer();
-				foreach ($args as $arg)
-					$tmpArgs->addArgument($arg);
-				$args = $tmpArgs;
-			}
-			if ( ! $args instanceof CliArgumentContainer)
-				throw new \InvalidArgumentException("Parameter 3 of CliCommand::__constructor must be array or CliArgumentContainer");
-
+			$this->myArgumentContainer = new CliArgumentContainer();
 			/**
 			 * 
 			 * Enter description here ...
 			 * @var CliArgumentContainer
 			 */
-			$this->myArgumentContainer = $args;
-			$this->myTargetFunction = $function;
 		}
-		
+
+
+		public function run (callable $fn) : self {
+		    $this->myTargetFunction = $fn;
+		    return $this;
+        }
+
+        public function description (string $description) : self {
+		    $this->myDescription = $description;
+		    return $this;
+        }
+
+        public function withString(string $paramName, $description) : self {
+		    $this->myArgumentContainer->addArgument(new CliValueArgument($paramName));
+		    return $this;
+        }
+
+
 		public function isMySelectStr ($str) {
 			if ("--".$this->myCliSelectStr == $str)
 				return true;
