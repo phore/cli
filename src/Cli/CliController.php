@@ -13,7 +13,7 @@
     class CliController {
 		const INST_MAIN = "INST_MAIN";
 		
-		private function __construct () {
+		public function __construct () {
 			$this->mDiContainer = new PhoreBaseDiCaller();
 		}
 		
