@@ -28,6 +28,7 @@
 
 		public function command($name) : CliCommand {
             $this->myCommands[] = $cmd = new CliCommand($name);
+            return $cmd;
         }
 
 
