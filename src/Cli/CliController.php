@@ -65,8 +65,8 @@
          * @param array|bool $mockParams
          * @throws \Exception
          */
-		public function dispatch ($mockParams=false) {
-			if ($mockParams !== false)
+		public function dispatch (array $mockParams=null) {
+			if ($mockParams !== null)
 				$args = $mockParams;
 			else
 				$args = $GLOBALS["argv"];
