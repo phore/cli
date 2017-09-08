@@ -17,15 +17,12 @@
 			$this->mDiContainer = new PhoreBaseDiCaller();
 		}
 		
-		private $myCliGroups = array();
+
 		private $myCliGroupsByName = [];
 
 
 		private $mDiContainer;
-		
-		public function addCliGroup (CliGroup $group) {
-			$this->myCliGroups[] = $group;
-		}
+        
 
 
 		public function group ($name) : CliGroup {
@@ -51,7 +48,7 @@
 			
 			echo "\n\n Modules Configuration:";
 			
-			foreach ($this->myCliGroups as $group) {
+			foreach ($this->myCliGroupsByName as $name => $group) {
 				$group->printHelp();
 			}
 			echo "\n";
@@ -86,8 +83,6 @@
 			}
 			
 			if (preg_match ("/\\-v([0-9])/", $args[0], $matches)) {
-				
-				Logger::Get()->setLogLevel($matches[1]);
 				array_shift ($args);
 			}
 
@@ -110,7 +105,7 @@
 
 			foreach ($allArgArr as $curArgs) {
 				$found = false;
-				foreach ($this->myCliGroups as $group) {
+				foreach ($this->myCliGroupsByName as $key => $group) {
 					/* @var $group CliGroup */
 					if ($group->isMySelectStr($curArgs[0])) {
 						array_shift($curArgs);

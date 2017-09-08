@@ -28,7 +28,6 @@
 		 */
 		public function __construct ($cliSelectStr) {
 			$this->myCliSelectStr = $cliSelectStr;
-			$this->myDescription = $description;
 
 			$this->myArgumentContainer = new CliArgumentContainer();
 			/**
