@@ -49,7 +49,7 @@
         }
 
         public function withString(string $paramName, $description) : self {
-		    $this->myArgumentContainer->addArgument(new CliValueArgument($paramName));
+		    $this->myArgumentContainer->addArgument(new CliValueArgument($paramName, $description));
 		    return $this;
         }
 
