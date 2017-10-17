@@ -48,8 +48,8 @@
 		    return $this;
         }
 
-        public function withString(string $paramName, $description) : self {
-		    $this->myArgumentContainer->addArgument(new CliValueArgument($paramName, $description));
+        public function argument(string $argumentName, $description) : self {
+		    $this->myArgumentContainer->addArgument(new CliValueArgument($argumentName, $description));
 		    return $this;
         }
 
