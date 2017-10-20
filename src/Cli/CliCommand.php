@@ -48,11 +48,15 @@
 		    return $this;
         }
 
-        public function argument(string $argumentName, $description) : self {
+        public function withString(string $argumentName, $description) : self {
 		    $this->myArgumentContainer->addArgument(new CliValueArgument($argumentName, $description));
 		    return $this;
         }
 
+        public function withBool(string $argumentName, $description) : self {
+		    $this->myArgumentContainer->addArgument(new CliBooleanArgument($argumentName, $description));
+		    return $this;
+        }
 
 		public function isMySelectStr ($str) {
 			if ("--".$this->myCliSelectStr == $str)
@@ -81,7 +85,7 @@
 
 			$overrideInterface = [CliArgumentContainer::class=>$this->myArgumentContainer];
 			foreach ($this->myArgumentContainer->getArgumentNames() as $curName) {
-				$overrideInterface["{$curName}"] = $this->myArgumentContainer->getArgumentByName($curName);
+				$overrideInterface["{$curName}"] = $this->myArgumentContainer->getArgumentByName($curName)->getValue();
 			}
 
 			$diContainer($this->myTargetFunction, $overrideInterface);
