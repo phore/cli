@@ -3,18 +3,15 @@
 
 
     namespace Phore\Cli;
-		
 
-	use gis\core\di\DiContainer;
-	use gis\core\exception\ExitException;
-    use Phore\Di\DiCaller;
-    use Phore\Di\PhoreBaseDiCaller;
+    use Phore\Di\Container\DiContainer;
+
 
     class CliController {
 		const INST_MAIN = "INST_MAIN";
 		
 		public function __construct () {
-			$this->mDiContainer = new PhoreBaseDiCaller();
+			$this->mDiContainer = new DiContainer();
 		}
 		
 
@@ -33,7 +30,7 @@
 
 
 		
-		public function setDiContainer (DiCaller $diContainer) {
+		public function setDiContainer (DiContainer $diContainer) {
 			$this->mDiContainer = $diContainer;
 		}
 		
