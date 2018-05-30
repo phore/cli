@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=7.0",
-        "phore/di-base": "*"
+        "phore/di-base": "^2.0"
     },
     "autoload": {
         "psr-4": {
