@@ -2,6 +2,7 @@
 
     namespace Phore\Cli;
 
+    use Phore\Di\Container\DiContainer;
     use Phore\Di\DiCaller;
 
     class CliGroup {
@@ -50,7 +51,7 @@
 		}
 		
 		
-		public function dispatch ($args, DiCaller $diContainer) {
+		public function dispatch ($args, DiContainer $diContainer) {
 			if (@$args[0] == "-h" or count ($args) == 0) {
 				echo "Printing Help for {$this->myCliSelectStr}\n";
 				$this->printHelp();
@@ -71,6 +72,5 @@
 		}
 	}
 
-	
 	
 	

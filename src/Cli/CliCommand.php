@@ -2,6 +2,7 @@
 
     namespace Phore\Cli;
 
+    use Phore\Di\Container\DiContainer;
     use Phore\Di\DiCaller;
 
     class CliCommand {
@@ -48,8 +49,8 @@
 		    return $this;
         }
 
-        public function withString(string $argumentName, $description) : self {
-		    $this->myArgumentContainer->addArgument(new CliValueArgument($argumentName, $description));
+        public function withString(string $argumentName, $description, string $default=null) : self {
+		    $this->myArgumentContainer->addArgument(new CliValueArgument($argumentName, $description, $default));
 		    return $this;
         }
 
@@ -75,7 +76,7 @@
 		}
 		
 		
-		public function dispatch ($args, DiCaller $diContainer) {
+		public function dispatch ($args, DiContainer $diContainer) {
 			if (@$args[0] == "-h") {
 				$this->printHelp();
 				return;
